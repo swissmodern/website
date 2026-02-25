@@ -1,0 +1,451 @@
+/* ============================================================
+   swissmodern — style.css
+   Design system: sign-tokyo aesthetic, opacity-only animations,
+   100% CSS custom property layout, no magic numbers.
+   ============================================================ */
+
+
+/* ============================================================
+   SECTION 1: :root — all design tokens
+   ============================================================ */
+
+:root {
+  /* Color */
+  --color-bg:               #111111;
+  --color-text-primary:     #ffffff;
+  --color-text-secondary:   rgba(255, 255, 255, 0.85);
+  --color-accent:           #9B9B9B;
+  --color-accent-hover:     rgba(155, 155, 155, 0.85);
+  --color-overlay-bg:       rgba(17, 17, 17, 0.96);
+  --color-page-transition:  #111111;
+
+  /* Typography */
+  --font-primary:             'DM Sans', sans-serif;
+  --font-size-nav-items:      clamp(2rem, 4vw, 3.5rem);
+  --font-size-section-title:  clamp(1.4rem, 2.5vw, 2rem);
+  --font-size-body:           clamp(0.9rem, 1.4vw, 1.05rem);
+  --font-size-utility:        11px;
+  --font-weight-regular:      400;
+  --font-weight-light:        300;
+  --line-height-body:         1.8;
+  --letter-spacing-utility:   0.08em;
+
+  /* Layout */
+  --nav-height:           64px;
+  --inset-x:              8vw;
+  --inset-y:              8vh;
+  --content-max-width:    680px;
+
+  /* Homepage sections */
+  --section-height:   100vh;
+  --scrim-start:      45%;
+  --scrim-opacity:    0.72;
+
+  /* Subpage hero */
+  --subpage-hero-height: 60vh;
+
+  /* Hamburger panel */
+  --panel-width:      280px;
+  --panel-padding-x:  2.5rem;
+  --panel-padding-y:  3rem;
+  --panel-nav-gap:    2.5rem;
+
+  /* Utility cluster */
+  --utility-gap:           1.5rem;
+  --utility-opacity:       0.55;
+  --utility-opacity-hover: 0.85;
+
+  /* Animations — OPACITY ONLY, no positional movement */
+  --fade-duration:  300ms;
+  --fade-page:      400ms;
+  --fade-reveal:    600ms;
+  --fade-easing:    linear;
+}
+
+
+/* ============================================================
+   SECTION 2: Font + Reset + Base
+   ============================================================ */
+
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  padding: 0;
+}
+
+
+/* ============================================================
+   SECTION 3: Page Transition Overlay
+   ============================================================ */
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-page-transition);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--fade-page) var(--fade-easing);
+}
+
+.page-transition.is-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+body.is-loading .page-transition {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   SECTION 4: Header
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--inset-x);
+  z-index: 100;
+}
+
+.site-logo {
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.site-logo:hover {
+  opacity: 0.7;
+}
+
+.header-utility {
+  display: flex;
+  align-items: center;
+  gap: var(--utility-gap);
+}
+
+.util-item {
+  font-size: var(--font-size-utility);
+  letter-spacing: var(--letter-spacing-utility);
+  color: var(--color-accent);
+  opacity: var(--utility-opacity);
+  transition: opacity var(--fade-duration) var(--fade-easing);
+  display: flex;
+  align-items: center;
+}
+
+.util-item:hover {
+  opacity: var(--utility-opacity-hover);
+}
+
+.util-item svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.lang-toggle {
+  font-size: var(--font-size-utility);
+  letter-spacing: var(--letter-spacing-utility);
+  color: var(--color-accent);
+  opacity: var(--utility-opacity);
+  text-transform: lowercase;
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.lang-toggle:hover {
+  opacity: var(--utility-opacity-hover);
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  padding: 8px;
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.menu-toggle:hover {
+  opacity: 0.7;
+}
+
+.menu-toggle svg {
+  width: 20px;
+  height: 14px;
+}
+
+.menu-toggle .icon-close {
+  display: none;
+}
+
+.menu-toggle .icon-open {
+  display: block;
+}
+
+.site-header.menu-is-open .menu-toggle .icon-close {
+  display: block;
+}
+
+.site-header.menu-is-open .menu-toggle .icon-open {
+  display: none;
+}
+
+
+/* ============================================================
+   SECTION 5: Hamburger Panel
+   ============================================================ */
+
+.menu-panel {
+  position: fixed;
+  top: var(--nav-height);
+  right: 0;
+  width: var(--panel-width);
+  background-color: var(--color-overlay-bg);
+  padding: var(--panel-padding-y) var(--panel-padding-x);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.menu-panel.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.menu-panel nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--panel-nav-gap);
+}
+
+.menu-panel nav a {
+  font-size: var(--font-size-nav-items);
+  font-weight: var(--font-weight-light);
+  text-transform: lowercase;
+  line-height: 1;
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.menu-panel nav a:hover {
+  opacity: 0.6;
+}
+
+
+/* ============================================================
+   SECTION 6: Homepage sections (hero + scrim + text reveal)
+   ============================================================ */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: var(--section-height);
+  overflow: hidden;
+  /* Fallback background if image missing */
+  background-color: #1a1a1a;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent var(--scrim-start),
+    rgba(0, 0, 0, var(--scrim-opacity)) 100%
+  );
+}
+
+.hero-content {
+  position: absolute;
+  bottom: var(--inset-y);
+  left: var(--inset-x);
+  z-index: 2;
+  max-width: 560px;
+  opacity: 0;
+  transition: opacity var(--fade-reveal) ease-out;
+}
+
+.hero-content.is-visible {
+  opacity: 1;
+}
+
+.section-title {
+  font-size: var(--font-size-section-title);
+  font-weight: var(--font-weight-regular);
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.section-body {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-light);
+  color: var(--color-text-secondary);
+  max-width: 480px;
+}
+
+.site-footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--inset-x);
+}
+
+.copyright {
+  font-size: var(--font-size-utility);
+  letter-spacing: var(--letter-spacing-utility);
+  color: var(--color-accent);
+  opacity: var(--utility-opacity);
+  text-transform: lowercase;
+}
+
+
+/* ============================================================
+   SECTION 7: Subpage layout
+   ============================================================ */
+
+.subpage-hero {
+  position: relative;
+  width: 100%;
+  height: var(--subpage-hero-height);
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+.subpage-hero .hero-content {
+  opacity: 1;
+}
+
+.subpage-content {
+  background-color: var(--color-bg);
+  padding: 5rem var(--inset-x);
+}
+
+.subpage-content p,
+.subpage-content .content-text {
+  max-width: var(--content-max-width);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-light);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-body);
+  margin-bottom: 1.5rem;
+}
+
+.contact-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.contact-icons a {
+  color: var(--color-accent);
+  opacity: var(--utility-opacity);
+  transition: opacity var(--fade-duration) var(--fade-easing);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-utility);
+  letter-spacing: var(--letter-spacing-utility);
+}
+
+.contact-icons a:hover {
+  opacity: var(--utility-opacity-hover);
+}
+
+.contact-icons svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+
+/* ============================================================
+   SECTION 8: Responsive breakpoints
+   ============================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --inset-x: 6vw;
+    --panel-width: 240px;
+    --font-size-nav-items: clamp(1.8rem, 5vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --inset-x: 5vw;
+    --inset-y: 5vh;
+    --panel-width: 100vw;
+    --utility-gap: 1rem;
+  }
+
+  .section-body {
+    max-width: 90vw;
+  }
+}
