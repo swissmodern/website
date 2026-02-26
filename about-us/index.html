@@ -3,11 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>swissmodern</title>
+  <title>über uns — swissmodern</title>
+  <meta name="description" content="swissmodern — gegründet 1996 von Martin Goray. Design des 20. Jahrhunderts, mit Schwerpunkt auf Schweizer Architekten.">
+  <link rel="canonical" href="https://www.swissmodern.ch/about-us/">
+  <link rel="alternate" hreflang="de" href="https://www.swissmodern.ch/about-us/">
+  <link rel="alternate" hreflang="en" href="https://www.swissmodern.ch/en/about-us/">
+  <link rel="alternate" hreflang="x-default" href="https://www.swissmodern.ch/about-us/">
+  <meta property="og:title" content="über uns — swissmodern">
+  <meta property="og:description" content="gegründet 1996 von Martin Goray, Zürich">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.swissmodern.ch/about-us/">
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<body>
-  <p>stub</p>
+<body class="is-loading">
+  <div class="page-transition"></div>
+  <header class="site-header">
+    <a href="/" class="site-logo">swissmodern</a>
+    <div class="header-utility">
+      <a href="mailto:info@swissmodern.ch" class="util-item" aria-label="Email">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+      <a href="https://instagram.com/PLACEHOLDER_IG" class="util-item" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <button class="lang-toggle" aria-label="Sprache wechseln">de · en</button>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="menu-panel" aria-label="Menü">
+        <svg class="icon-open" viewBox="0 0 20 14" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="1" x2="20" y2="1" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="13" x2="20" y2="13" stroke="currentColor" stroke-width="1.5"/></svg>
+        <svg class="icon-close" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><line x1="2" y1="2" x2="18" y2="18" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="2" x2="2" y2="18" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </header>
+  <nav class="menu-panel" id="menu-panel" aria-label="Navigation">
+    <a href="/rental-service/">rental service</a>
+    <a href="/collection/">collection</a>
+    <a href="/about-us/">about us</a>
+  </nav>
+  <main>
+    <div class="subpage-hero">
+      <div class="hero-bg">
+        <picture>
+          <source srcset="/assets/img/pages/about-hero.webp" type="image/webp">
+          <img src="/assets/img/pages/about-hero.jpg" alt="Martin Goray — Gründer von swissmodern, Zürich" loading="eager">
+        </picture>
+      </div>
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <h1 class="section-title"><!-- slot:about-title-de -->über uns<!-- /slot --></h1>
+      </div>
+    </div>
+    <div class="subpage-content">
+      <p class="content-text"><!-- slot:about-body-de -->Swissmodern wurde 1996 von Martin Goray gegründet. Er verbrachte den Grössten Teil seines Lebens in Zürich, wo er Kunstgeschichte, Filmregie und Szenographie studierte. Stücke aus der Swissmodern-Kollektion wurden in verschiedenen Design- und Kunstgalerien ausgestellt. Viele Objekte fanden ihren Weg in bedeutende Sammlungen und Museen wie das Vitra Museum, das MoMA, die Neue Sammlung München und das Museum für Gestaltung Zürich sowie zu verschiedenen Privatsammlern. Einige Sammlungen schätzen ihn auch als Berater — aufgrund seines profunden Verständnisses des Midcentury-Designs, sowohl in historischer als auch technischer Hinsicht.<!-- /slot --></p>
+      <div class="contact-icons">
+        <a href="mailto:info@swissmodern.ch" aria-label="E-Mail Kontakt">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          info@swissmodern.ch
+        </a>
+        <a href="https://instagram.com/PLACEHOLDER_IG" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          instagram
+        </a>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <small class="copyright">© swissmodern</small>
+  </footer>
   <script src="/assets/js/main.js"></script>
 </body>
 </html>
