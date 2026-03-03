@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="260" viewBox="0 0 1800 260">
+  <defs>
+    <style>
+      .k { fill:none; stroke:#111; stroke-width:2; stroke-linecap:butt; stroke-linejoin:miter; }
+    </style>
+
+    <!-- ======== LETTERS (each in a 110×200 box; baseline around y=200) ======== -->
+
+    <!-- S -->
+    <g id="L_S">
+      <!-- top half -->
+      <path class="k" d="M 85 60 A 45 45 0 0 0 40 15" />
+      <path class="k" d="M 79 60 A 39 39 0 0 0 40 21" />
+      <path class="k" d="M 73 60 A 33 33 0 0 0 40 27" />
+
+      <!-- mid sweep -->
+      <path class="k" d="M 40 15 A 45 45 0 0 0 40 105" />
+      <path class="k" d="M 40 21 A 39 39 0 0 0 40 99" />
+      <path class="k" d="M 40 27 A 33 33 0 0 0 40 93" />
+
+      <!-- bottom half -->
+      <path class="k" d="M 40 105 A 45 45 0 0 0 85 150" />
+      <path class="k" d="M 40 99  A 39 39 0 0 0 79 150" />
+      <path class="k" d="M 40 93  A 33 33 0 0 0 73 150" />
+
+      <!-- final curl down -->
+      <path class="k" d="M 85 150 A 45 45 0 0 1 40 195" />
+      <path class="k" d="M 79 150 A 39 39 0 0 1 40 189" />
+      <path class="k" d="M 73 150 A 33 33 0 0 1 40 183" />
+    </g>
+
+    <!-- W -->
+    <g id="L_W">
+      <!-- left vertical (3 lines) -->
+      <path class="k" d="M 18 15 V 200" />
+      <path class="k" d="M 24 15 V 200" />
+      <path class="k" d="M 30 15 V 200" />
+
+      <!-- inner left diagonal -->
+      <path class="k" d="M 30 200 L 52 120" />
+      <path class="k" d="M 36 200 L 58 120" />
+      <path class="k" d="M 42 200 L 64 120" />
+
+      <!-- inner right diagonal -->
+      <path class="k" d="M 58 120 L 80 200" />
+      <path class="k" d="M 64 120 L 86 200" />
+      <path class="k" d="M 70 120 L 92 200" />
+
+      <!-- right vertical -->
+      <path class="k" d="M 80 15 V 200" />
+      <path class="k" d="M 86 15 V 200" />
+      <path class="k" d="M 92 15 V 200" />
+    </g>
+
+    <!-- I -->
+    <g id="L_I">
+      <path class="k" d="M 50 15 V 200" />
+      <path class="k" d="M 56 15 V 200" />
+      <path class="k" d="M 62 15 V 200" />
+    </g>
+
+    <!-- M -->
+    <g id="L_M">
+      <!-- left vertical -->
+      <path class="k" d="M 18 200 V 15" />
+      <path class="k" d="M 24 200 V 15" />
+      <path class="k" d="M 30 200 V 15" />
+
+      <!-- left diagonal to center -->
+      <path class="k" d="M 30 15 L 55 105" />
+      <path class="k" d="M 36 15 L 61 105" />
+      <path class="k" d="M 42 15 L 67 105" />
+
+      <!-- right diagonal down -->
+      <path class="k" d="M 55 105 L 80 15" />
+      <path class="k" d="M 61 105 L 86 15" />
+      <path class="k" d="M 67 105 L 92 15" />
+
+      <!-- right vertical -->
+      <path class="k" d="M 80 15 V 200" />
+      <path class="k" d="M 86 15 V 200" />
+      <path class="k" d="M 92 15 V 200" />
+    </g>
+
+    <!-- O -->
+    <g id="L_O">
+      <path class="k" d="M 55 15 A 70 70 0 1 1 54.9 15" />
+      <path class="k" d="M 55 27 A 58 58 0 1 1 54.9 27" />
+      <path class="k" d="M 55 39 A 46 46 0 1 1 54.9 39" />
+    </g>
+
+    <!-- D -->
+    <g id="L_D">
+      <!-- stem -->
+      <path class="k" d="M 22 15 V 200" />
+      <path class="k" d="M 28 15 V 200" />
+      <path class="k" d="M 34 15 V 200" />
+      <!-- bowl -->
+      <path class="k" d="M 34 15 A 85 92 0 0 1 34 200" />
+      <path class="k" d="M 40 21 A 79 86 0 0 1 40 194" />
+      <path class="k" d="M 46 27 A 73 80 0 0 1 46 188" />
+    </g>
+
+    <!-- E -->
+    <g id="L_E">
+      <!-- vertical -->
+      <path class="k" d="M 22 15 V 200" />
+      <path class="k" d="M 28 15 V 200" />
+      <path class="k" d="M 34 15 V 200" />
+      <!-- top bar -->
+      <path class="k" d="M 22 15 H 92" />
+      <path class="k" d="M 22 21 H 92" />
+      <path class="k" d="M 22 27 H 92" />
+      <!-- mid bar -->
+      <path class="k" d="M 22 107 H 82" />
+      <path class="k" d="M 22 113 H 82" />
+      <path class="k" d="M 22 119 H 82" />
+      <!-- bottom bar -->
+      <path class="k" d="M 22 200 H 92" />
+      <path class="k" d="M 22 194 H 92" />
+      <path class="k" d="M 22 188 H 92" />
+    </g>
+
+    <!-- R -->
+    <g id="L_R">
+      <!-- stem -->
+      <path class="k" d="M 22 15 V 200" />
+      <path class="k" d="M 28 15 V 200" />
+      <path class="k" d="M 34 15 V 200" />
+      <!-- upper bowl -->
+      <path class="k" d="M 34 15 H 70 A 38 38 0 0 1 70 91 H 34" />
+      <path class="k" d="M 34 21 H 68 A 32 32 0 0 1 68 85 H 34" />
+      <path class="k" d="M 34 27 H 66 A 26 26 0 0 1 66 79 H 34" />
+      <!-- leg -->
+      <path class="k" d="M 40 110 L 92 200" />
+      <path class="k" d="M 46 110 L 98 200" />
+      <path class="k" d="M 52 110 L 104 200" />
+    </g>
+
+    <!-- N -->
+    <g id="L_N">
+      <!-- left vertical -->
+      <path class="k" d="M 18 200 V 15" />
+      <path class="k" d="M 24 200 V 15" />
+      <path class="k" d="M 30 200 V 15" />
+      <!-- diagonal -->
+      <path class="k" d="M 30 15 L 82 200" />
+      <path class="k" d="M 36 15 L 88 200" />
+      <path class="k" d="M 42 15 L 94 200" />
+      <!-- right vertical -->
+      <path class="k" d="M 82 15 V 200" />
+      <path class="k" d="M 88 15 V 200" />
+      <path class="k" d="M 94 15 V 200" />
+    </g>
+  </defs>
+
+  <!-- ======== WORDMARK: SWISSMODERN ======== -->
+  <!-- Spacing: 130 units per letter -->
+  <g transform="translate(30,30)">
+    <g transform="translate(0,0)"><use href="#L_S"/></g>
+    <g transform="translate(130,0)"><use href="#L_W"/></g>
+    <g transform="translate(260,0)"><use href="#L_I"/></g>
+    <g transform="translate(390,0)"><use href="#L_S"/></g>
+    <g transform="translate(520,0)"><use href="#L_S"/></g>
+    <g transform="translate(650,0)"><use href="#L_M"/></g>
+    <g transform="translate(780,0)"><use href="#L_O"/></g>
+    <g transform="translate(910,0)"><use href="#L_D"/></g>
+    <g transform="translate(1040,0)"><use href="#L_E"/></g>
+    <g transform="translate(1170,0)"><use href="#L_R"/></g>
+    <g transform="translate(1300,0)"><use href="#L_N"/></g>
+  </g>
+</svg>
