@@ -324,7 +324,7 @@ body.is-loading .page-transition {
     ),
     linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.53) 0%,
+      rgba(0, 0, 0, 0.63) 0%,
       rgba(0, 0, 0, 0.18) 12%,
       rgba(0, 0, 0, 0.05) 20%,
       transparent 28%
@@ -348,10 +348,13 @@ body.is-loading .page-transition {
 .section-title {
   font-size: var(--font-size-section-title);
   font-weight: var(--font-weight-regular);
-  text-transform: lowercase;
   letter-spacing: 0.02em;
   margin-bottom: 0.75rem;
   white-space: nowrap;
+}
+
+.hero-content--lower {
+  bottom: calc(var(--inset-y) + 1.2rem);
 }
 
 .section-body {
