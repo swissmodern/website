@@ -37,8 +37,9 @@
 
   /* Homepage sections */
   --section-height:   100vh;
-  --scrim-start:      45%;
-  --scrim-opacity:    0.72;
+  --scrim-start:      25%;
+  --scrim-start-top:  35%;
+  --scrim-opacity:    0.55;
 
   /* Subpage hero */
   --subpage-hero-height: 60vh;
@@ -313,11 +314,21 @@ body.is-loading .page-transition {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    transparent var(--scrim-start),
-    rgba(0, 0, 0, var(--scrim-opacity)) 100%
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.18) 15%,
+      rgba(0, 0, 0, 0.05) 25%,
+      transparent 35%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.53) 0%,
+      rgba(0, 0, 0, 0.18) 12%,
+      rgba(0, 0, 0, 0.05) 20%,
+      transparent 28%
+    );
 }
 
 .hero-content {
@@ -368,6 +379,14 @@ body.is-loading .page-transition {
 /* ============================================================
    SECTION 7: Subpage layout
    ============================================================ */
+
+.subpage-hero .hero-scrim {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, var(--scrim-opacity)) 0%,
+    transparent var(--scrim-start-top)
+  );
+}
 
 .subpage-hero {
   position: relative;
