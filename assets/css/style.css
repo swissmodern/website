@@ -52,6 +52,12 @@
   --on-shadow-top:   28vh;
   --on-shadow-left:  48%;
 
+  /* Opener text on the shaded wall at top-left (session 10 test, Igor assesses) —
+     narrow column; remove class .hero-content--on-wall to revert */
+  --on-wall-top:     16vh;
+  --on-wall-left:    var(--inset-x);
+  --on-wall-right:   70vw;
+
   /* Hamburger panel */
   --panel-width:      280px;
   --panel-padding-x:  1.5rem;
@@ -418,11 +424,22 @@ body.is-loading .page-transition {
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
 }
 
+/* Opener: text on the shaded wall, top-left (test). Same fallback as on-shadow. */
+.hero-content--on-wall {
+  top: var(--on-wall-top);
+  bottom: auto;
+  left: var(--on-wall-left);
+  right: var(--on-wall-right);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
 @media (max-width: 768px) {
-  .hero-content--on-shadow {
+  .hero-content--on-shadow,
+  .hero-content--on-wall {
     top: auto;
     bottom: var(--inset-y);
     left: var(--inset-x);
+    right: var(--inset-x);
     text-shadow: none;
   }
 }
