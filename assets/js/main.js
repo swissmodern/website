@@ -1,10 +1,22 @@
 /* swissmodern — main.js
    1. Page transitions (fade to/from #111)
+   1b. Eased chapter scroll (anchors on the current page)
    2. Scroll-triggered section reveals (Intersection Observer)
    3. Hamburger panel (open/close, ≡ ↔ ×)
    4. Language toggle (localStorage + redirect)
 */
 'use strict';
+
+// Durations live in style.css :root — read them so CSS stays the single source of truth.
+const cssMs = (name, fallback) => {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const n = parseFloat(raw);
+  if (Number.isNaN(n)) return fallback;
+  return raw.endsWith('ms') ? n : n * 1000;
+};
+const FADE_PAGE_MS   = cssMs('--fade-page', 800);
+const SCROLL_BASE_MS = cssMs('--scroll-duration', 1400);
+const reduceMotion   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ─── 1. Page Transitions ──────────────────────────────────────────────────────
 
@@ -15,19 +27,56 @@ window.addEventListener('DOMContentLoaded', () => {
   if (transition) transition.classList.remove('is-visible');
 });
 
+// ─── 1b. Eased chapter scroll ─────────────────────────────────────────────────
+// Native scroll-behavior: smooth has no easing control and stops abruptly. This runs the
+// document scroll with an ease-out falloff (quintic), duration scaled by distance, and
+// hands control back the moment the visitor scrolls on their own.
+
+const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
+
+const scrollToSection = (el) => {
+  const start    = window.scrollY;
+  const target   = Math.round(el.getBoundingClientRect().top + start);
+  const distance = target - start;
+  if (reduceMotion || Math.abs(distance) < 2) { window.scrollTo(0, target); return; }
+
+  const viewports = Math.abs(distance) / window.innerHeight;
+  const duration  = SCROLL_BASE_MS * Math.min(1.75, Math.max(0.75, viewports));
+  let cancelled = false;
+  const cancel = () => { cancelled = true; };
+  window.addEventListener('wheel', cancel, { once: true, passive: true });
+  window.addEventListener('touchstart', cancel, { once: true, passive: true });
+
+  const t0 = performance.now();
+  const step = (now) => {
+    if (cancelled) return;
+    const p = Math.min(1, (now - t0) / duration);
+    window.scrollTo(0, start + distance * easeOutQuint(p));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+
 document.addEventListener('click', (e) => {
   const link = e.target.closest('a[href]');
   if (!link) return;
   const href = link.getAttribute('href');
-  if (!href || href.startsWith('http') || href.startsWith('#') ||
-      href.startsWith('mailto') || href.startsWith('tel')) return;
-  // Chapter anchors on the current page ("/#raeume" on the homepage) scroll in place;
-  // fading out would leave the overlay up, because no new page loads.
+  if (!href || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
   const url = new URL(link.href, window.location.href);
-  if (url.pathname === window.location.pathname && url.hash) return;
+  // Chapter anchor on the current page ("#raeume", or "/#raeume" on the homepage): ease
+  // the scroll in place. No page fade — nothing new loads, the overlay would stay up.
+  if (url.pathname === window.location.pathname && url.hash) {
+    const section = document.getElementById(url.hash.slice(1));
+    if (!section) return;
+    e.preventDefault();
+    scrollToSection(section);
+    history.pushState(null, '', url.hash);
+    return;
+  }
+  if (href.startsWith('#')) return;
   e.preventDefault();
   if (transition) transition.classList.add('is-visible');
-  setTimeout(() => { window.location.href = href; }, 400);
+  setTimeout(() => { window.location.href = href; }, FADE_PAGE_MS);
 });
 
 // Mockup switch for the meeting with Martin (session 10): /?wordmark shows the wordmark

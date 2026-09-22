@@ -63,11 +63,16 @@
   --utility-opacity:       0.55;
   --utility-opacity-hover: 0.85;
 
-  /* Animations — OPACITY ONLY, no positional movement */
+  /* Animations — OPACITY ONLY, no positional movement.
+     Session 10 (Igor): page fade and text reveal doubled for a slower, cinematic pace. */
   --fade-duration:  300ms;
-  --fade-page:      400ms;
-  --fade-reveal:    600ms;
+  --fade-page:      800ms;
+  --fade-reveal:    1200ms;
   --fade-easing:    linear;
+
+  /* Chapter scroll (session 10, Igor): eased in main.js, not CSS scroll-behavior.
+     Duration for a one-viewport jump; longer jumps scale up, capped in main.js. */
+  --scroll-duration: 1400ms;
 }
 
 
@@ -91,12 +96,9 @@
 
 html {
   color-scheme: dark;
-  /* Chapter anchors scroll instead of jump — document scroll, not an element animation */
-  scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  /* Chapter anchors are eased by main.js (ease-out falloff); a hash on page load
+     jumps instantly, hidden behind the page fade. */
+  scroll-behavior: auto;
 }
 
 body {
