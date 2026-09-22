@@ -52,12 +52,8 @@
   --on-shadow-top:   28vh;
   --on-shadow-left:  48%;
 
-  /* Opener text placement (session 10 test, Igor assesses): upper-right corner of the
-     facing wall, under the eaves, left of the drainpipe. Remove class
-     .hero-content--opener to fall back to bottom-left. */
-  --opener-text-top:    37vh;
-  --opener-text-left:   55vw;
-  --opener-text-right:  20vw;
+  /* Opener title = the wordmark (session 10, Igor + Martin): larger than chapter titles */
+  --opener-title-scale: 1.6;
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -425,18 +421,8 @@ body.is-loading .page-transition {
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
 }
 
-/* Opener: text placed by the --opener-text-* tokens (test). Same fallback as on-shadow. */
-.hero-content--opener {
-  top: var(--opener-text-top);
-  bottom: auto;
-  left: var(--opener-text-left);
-  right: var(--opener-text-right);
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
-}
-
 @media (max-width: 768px) {
-  .hero-content--on-shadow,
-  .hero-content--opener {
+  .hero-content--on-shadow {
     top: auto;
     bottom: var(--inset-y);
     left: var(--inset-x);
@@ -445,15 +431,11 @@ body.is-loading .page-transition {
   }
 }
 
-/* Mockup for Martin (session 10, decision 3): ?wordmark shows the wordmark as opener title.
-   Demo only — main.js sets the body class from the query string. */
-body.variant-wordmark-title .hero-section:first-of-type .section-title:empty {
-  display: block;
-}
-
-body.variant-wordmark-title .hero-section:first-of-type .section-title::before {
-  content: "swissmodern";
-  font-size: calc(var(--font-size-section-title) * 1.6);
+/* Opener (session 10): the wordmark is the chapter title, set in the content slot
+   home-s1-title-*; larger and letter-spaced like the header wordmark. Text stays
+   bottom-left — three other placements were tried on 22.09. and rejected. */
+.hero-section--opener .section-title {
+  font-size: calc(var(--font-size-section-title) * var(--opener-title-scale));
   letter-spacing: 0.06em;
   text-transform: lowercase;
 }
@@ -491,17 +473,22 @@ body.variant-wordmark-title .hero-section:first-of-type .section-title::before {
   opacity: 1;
 }
 
-/* Portrait hero section — height determined by image, not viewport */
-.hero-section--portrait {
+/* Full-image hero section — height determined by the image, not the viewport.
+   --portrait: the portrait chair (chapter 2). --full-image: same rule for a landscape
+   photo that must never be trimmed (chapter 5 "Ihre Sammlung", Martin, 22.09.). */
+.hero-section--portrait,
+.hero-section--full-image {
   height: auto;
 }
 
-.hero-section--portrait .hero-bg {
+.hero-section--portrait .hero-bg,
+.hero-section--full-image .hero-bg {
   position: relative;
   width: 100%;
 }
 
-.hero-section--portrait .hero-bg img {
+.hero-section--portrait .hero-bg img,
+.hero-section--full-image .hero-bg img {
   width: 100%;
   height: auto;
   object-fit: initial;

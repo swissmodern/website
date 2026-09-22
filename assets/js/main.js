@@ -79,12 +79,6 @@ document.addEventListener('click', (e) => {
   setTimeout(() => { window.location.href = href; }, FADE_PAGE_MS);
 });
 
-// Mockup switch for the meeting with Martin (session 10): /?wordmark shows the wordmark
-// as the opener title. Demo only — remove together with the CSS variant once decided.
-if (new URLSearchParams(window.location.search).has('wordmark')) {
-  document.body.classList.add('variant-wordmark-title');
-}
-
 // ─── 2. Scroll Reveals ────────────────────────────────────────────────────────
 
 const revealEls = document.querySelectorAll('.hero-content');
