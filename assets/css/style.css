@@ -41,8 +41,16 @@
   --scrim-start-top:  35%;
   --scrim-opacity:    0.55;
 
-  /* Subpage hero */
-  --subpage-hero-height: 60vh;
+  /* Inline chapter nav (session 10) — shown from --site-nav-min-width up (media query
+     literal: 1100px; custom properties cannot drive media queries), hamburger below */
+  --site-nav-gap:        2rem;
+  --site-nav-font-size:  clamp(0.8rem, 1.05vw, 0.95rem);
+  --site-nav-opacity:    0.85;
+
+  /* Section 4 text on the shadow (session 10, Martin) — one exception to the
+     bottom-left anchor; remove class .hero-content--on-shadow to revert */
+  --on-shadow-top:   28vh;
+  --on-shadow-left:  48%;
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -83,6 +91,12 @@
 
 html {
   color-scheme: dark;
+  /* Chapter anchors scroll instead of jump — document scroll, not an element animation */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
@@ -167,6 +181,29 @@ body.is-loading .page-transition {
 
 .site-logo:hover {
   opacity: 0.7;
+}
+
+/* Inline chapter nav — desktop only; the hamburger panel carries the same links below */
+.site-nav {
+  display: none;
+  align-items: center;
+  gap: var(--site-nav-gap);
+  margin-left: calc(var(--site-nav-gap) * 1.5);
+  margin-right: auto;
+}
+
+.site-nav a {
+  font-size: var(--site-nav-font-size);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  opacity: var(--site-nav-opacity);
+  transition: opacity var(--fade-duration) var(--fade-easing);
+}
+
+.site-nav a:hover {
+  opacity: 0.6;
 }
 
 .header-utility {
@@ -283,6 +320,13 @@ body.is-loading .page-transition {
   opacity: 0.6;
 }
 
+/* Desktop: inline chapter nav replaces the hamburger. Placed after the toggle and panel
+   rules on purpose — same specificity, so source order decides. */
+@media (min-width: 1100px) {
+  .site-nav { display: flex; }
+  .menu-toggle, .menu-panel { display: none; }
+}
+
 
 /* ============================================================
    SECTION 6: Homepage sections (hero + scrim + text reveal)
@@ -357,6 +401,43 @@ body.is-loading .page-transition {
   bottom: calc(var(--inset-y) + 1.2rem);
 }
 
+/* Opener has no title (session 10): an empty heading must not leave a gap */
+.section-title:empty {
+  display: none;
+}
+
+/* Section 4: text on the sunlit shadow of the daybed photo (Martin, 21.09.2026).
+   Reversible: remove the class from the section's .hero-content. Falls back to
+   bottom-left on narrow viewports, where object-fit: cover moves the shadow off-screen. */
+.hero-content--on-shadow {
+  top: var(--on-shadow-top);
+  bottom: auto;
+  left: var(--on-shadow-left);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .hero-content--on-shadow {
+    top: auto;
+    bottom: var(--inset-y);
+    left: var(--inset-x);
+    text-shadow: none;
+  }
+}
+
+/* Mockup for Martin (session 10, decision 3): ?wordmark shows the wordmark as opener title.
+   Demo only — main.js sets the body class from the query string. */
+body.variant-wordmark-title .hero-section:first-of-type .section-title:empty {
+  display: block;
+}
+
+body.variant-wordmark-title .hero-section:first-of-type .section-title::before {
+  content: "swissmodern";
+  font-size: calc(var(--font-size-section-title) * 1.6);
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+}
+
 .section-body {
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-light);
@@ -383,23 +464,10 @@ body.is-loading .page-transition {
    SECTION 7: Subpage layout
    ============================================================ */
 
-.subpage-hero .hero-scrim {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, var(--scrim-opacity)) 0%,
-    transparent var(--scrim-start-top)
-  );
-}
-
-.subpage-hero {
-  position: relative;
-  width: 100%;
-  height: var(--subpage-hero-height);
-  overflow: hidden;
-  background-color: #1a1a1a;
-}
-
-.subpage-hero .hero-content {
+/* About page (session 10): one full-viewport hero like a homepage chapter, text on the
+   photo — Martin did not want the solid block under the image. Contact links sit in the
+   hero content. The old .subpage-hero / .subpage-content layout was removed. */
+.hero-section--about .hero-content {
   opacity: 1;
 }
 
@@ -420,24 +488,10 @@ body.is-loading .page-transition {
   object-position: initial;
 }
 
-.subpage-content {
-  background-color: var(--color-bg);
-  padding: 5rem var(--inset-x);
-}
-
-.subpage-content p,
-.subpage-content .content-text {
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-light);
-  color: var(--color-text-secondary);
-  line-height: var(--line-height-body);
-  margin-bottom: 1.5rem;
-}
-
 .contact-icons {
   display: flex;
   gap: 1.5rem;
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
 }
 
 .contact-icons a {
@@ -470,6 +524,11 @@ body.is-loading .page-transition {
   :root {
     --inset-x: 6vw;
     --panel-width: 240px;
+  }
+
+  /* Chapter titles grew in session 10 ("Für Ihr Zuhause und Ihre Projekte"); nowrap clips them on phones */
+  .section-title {
+    white-space: normal;
   }
 }
 

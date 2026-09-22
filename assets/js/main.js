@@ -21,10 +21,20 @@ document.addEventListener('click', (e) => {
   const href = link.getAttribute('href');
   if (!href || href.startsWith('http') || href.startsWith('#') ||
       href.startsWith('mailto') || href.startsWith('tel')) return;
+  // Chapter anchors on the current page ("/#raeume" on the homepage) scroll in place;
+  // fading out would leave the overlay up, because no new page loads.
+  const url = new URL(link.href, window.location.href);
+  if (url.pathname === window.location.pathname && url.hash) return;
   e.preventDefault();
   if (transition) transition.classList.add('is-visible');
   setTimeout(() => { window.location.href = href; }, 400);
 });
+
+// Mockup switch for the meeting with Martin (session 10): /?wordmark shows the wordmark
+// as the opener title. Demo only — remove together with the CSS variant once decided.
+if (new URLSearchParams(window.location.search).has('wordmark')) {
+  document.body.classList.add('variant-wordmark-title');
+}
 
 // ─── 2. Scroll Reveals ────────────────────────────────────────────────────────
 
@@ -66,11 +76,11 @@ if (menuToggle && menuPanel) {
   });
 
   document.addEventListener('click', (e) => {
-    if (
-      menuPanel.classList.contains('is-open') &&
-      !menuPanel.contains(e.target) &&
-      !menuToggle.contains(e.target)
-    ) {
+    if (!menuPanel.classList.contains('is-open')) return;
+    const outside = !menuPanel.contains(e.target) && !menuToggle.contains(e.target);
+    // A chapter link inside the panel scrolls in place, so the panel must close itself.
+    const panelLink = e.target.closest('.menu-panel a');
+    if (outside || panelLink) {
       menuPanel.classList.remove('is-open');
       siteHeader.classList.remove('menu-is-open');
       menuToggle.setAttribute('aria-expanded', 'false');
