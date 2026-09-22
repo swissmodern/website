@@ -53,7 +53,7 @@
   --on-shadow-left:  48%;
   --on-shadow-top-mobile: 12vh;   /* phones: the cropped frame's shaded wall is at the top */
 
-  /* Opener title = the wordmark (session 10, Igor + Martin): larger than chapter titles */
+  /* Opener title = the wordmark (session 10, Igor): larger than chapter titles */
   --opener-title-scale: 1.6;
 
   /* Hamburger panel */
