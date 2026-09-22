@@ -52,11 +52,12 @@
   --on-shadow-top:   28vh;
   --on-shadow-left:  48%;
 
-  /* Opener text placement (session 10 test, Igor assesses): on the birch foliage,
-     top-right. Remove class .hero-content--opener to fall back to bottom-left. */
-  --opener-text-top:    14vh;
-  --opener-text-left:   58vw;
-  --opener-text-right:  var(--inset-x);
+  /* Opener text placement (session 10 test, Igor assesses): upper-right corner of the
+     facing wall, under the eaves, left of the drainpipe. Remove class
+     .hero-content--opener to fall back to bottom-left. */
+  --opener-text-top:    37vh;
+  --opener-text-left:   55vw;
+  --opener-text-right:  20vw;
 
   /* Hamburger panel */
   --panel-width:      280px;
