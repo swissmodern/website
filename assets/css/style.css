@@ -51,6 +51,7 @@
      bottom-left anchor; remove class .hero-content--on-shadow to revert */
   --on-shadow-top:   28vh;
   --on-shadow-left:  48%;
+  --on-shadow-top-mobile: 12vh;   /* phones: the cropped frame's shaded wall is at the top */
 
   /* Opener title = the wordmark (session 10, Igor + Martin): larger than chapter titles */
   --opener-title-scale: 1.6;
@@ -412,8 +413,8 @@ body.is-loading .page-transition {
 }
 
 /* Section 4: text on the sunlit shadow of the daybed photo (Martin, 21.09.2026).
-   Reversible: remove the class from the section's .hero-content. Falls back to
-   bottom-left on narrow viewports, where object-fit: cover moves the shadow off-screen. */
+   Reversible: remove the class from the section's .hero-content. On narrow viewports the
+   cover crop leaves the shaded wall at the top, so the text moves to the top (Igor, 22.09.). */
 .hero-content--on-shadow {
   top: var(--on-shadow-top);
   bottom: auto;
@@ -423,11 +424,10 @@ body.is-loading .page-transition {
 
 @media (max-width: 768px) {
   .hero-content--on-shadow {
-    top: auto;
-    bottom: var(--inset-y);
+    top: var(--on-shadow-top-mobile);
+    bottom: auto;
     left: var(--inset-x);
     right: var(--inset-x);
-    text-shadow: none;
   }
 }
 
