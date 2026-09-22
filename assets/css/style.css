@@ -52,11 +52,11 @@
   --on-shadow-top:   28vh;
   --on-shadow-left:  48%;
 
-  /* Opener text on the shaded wall at top-left (session 10 test, Igor assesses) —
-     narrow column; remove class .hero-content--on-wall to revert */
-  --on-wall-top:     16vh;
-  --on-wall-left:    var(--inset-x);
-  --on-wall-right:   70vw;
+  /* Opener text placement (session 10 test, Igor assesses): on the birch foliage,
+     top-right. Remove class .hero-content--opener to fall back to bottom-left. */
+  --opener-text-top:    14vh;
+  --opener-text-left:   58vw;
+  --opener-text-right:  var(--inset-x);
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -424,18 +424,18 @@ body.is-loading .page-transition {
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
 }
 
-/* Opener: text on the shaded wall, top-left (test). Same fallback as on-shadow. */
-.hero-content--on-wall {
-  top: var(--on-wall-top);
+/* Opener: text placed by the --opener-text-* tokens (test). Same fallback as on-shadow. */
+.hero-content--opener {
+  top: var(--opener-text-top);
   bottom: auto;
-  left: var(--on-wall-left);
-  right: var(--on-wall-right);
+  left: var(--opener-text-left);
+  right: var(--opener-text-right);
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
 }
 
 @media (max-width: 768px) {
   .hero-content--on-shadow,
-  .hero-content--on-wall {
+  .hero-content--opener {
     top: auto;
     bottom: var(--inset-y);
     left: var(--inset-x);
