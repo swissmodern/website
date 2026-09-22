@@ -149,6 +149,10 @@ const getLangAlternate = (path, targetLang) => {
   }
 };
 
+// Query string and hash survive the language switch: "/?wordmark" and "/#zuhause" must
+// land on "/en/?wordmark" and "/en/#zuhause", not on the top of "/en/".
+const keepQueryAndHash = (path) => path + window.location.search + window.location.hash;
+
 const langToggle = document.querySelector('.lang-toggle');
 if (langToggle) {
   langToggle.addEventListener('click', () => {
@@ -156,7 +160,7 @@ if (langToggle) {
     const targetLang  = currentLang === 'de' ? 'en' : 'de';
     const targetPath  = getLangAlternate(window.location.pathname, targetLang);
     localStorage.setItem('preferred-lang', targetLang);
-    window.location.href = targetPath;
+    window.location.href = keepQueryAndHash(targetPath);
   });
 }
 
@@ -166,7 +170,7 @@ if (preferredLang) {
   if (preferredLang !== currentLang) {
     const targetPath = getLangAlternate(window.location.pathname, preferredLang);
     if (targetPath !== window.location.pathname) {
-      window.location.replace(targetPath);
+      window.location.replace(keepQueryAndHash(targetPath));
     }
   }
 }
