@@ -58,11 +58,14 @@
      (the chairs stay in view); every other chapter crops from the centre */
   --opener-image-anchor: left center;
 
-  /* Strong scrim (Igor, 23.09.): taller, darker bottom falloff than the chapter scrim.
-     Used where the photo is bright under the text — the about page (tall text block on a
-     mid-bright shelf) and the opener (text on sunlit concrete). */
+  /* Strong scrim (Igor, 23.09.): taller, darker bottom falloff than the chapter scrim,
+     where the photo is bright under the text. Same gradient shape, tuned per page:
+     about (tall text block on a mid-bright shelf) and opener (text on sunlit concrete,
+     fainter and ending lower — Igor, 23.09.). */
   --strong-scrim-opacity: 0.8;
   --strong-scrim-height:  62%;
+  --opener-scrim-opacity: 0.6;
+  --opener-scrim-height:  48%;
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -486,7 +489,17 @@ body.is-loading .page-transition {
   opacity: 1;
 }
 
-/* Strong scrim — about page and opener (see the --strong-scrim-* tokens) */
+/* Strong scrim — one gradient shape, per-page strength via the two local properties */
+.hero-section--about .hero-scrim {
+  --scrim-o: var(--strong-scrim-opacity);
+  --scrim-h: var(--strong-scrim-height);
+}
+
+.hero-section--opener .hero-scrim {
+  --scrim-o: var(--opener-scrim-opacity);
+  --scrim-h: var(--opener-scrim-height);
+}
+
 .hero-section--about .hero-scrim,
 .hero-section--opener .hero-scrim {
   background:
@@ -498,10 +511,10 @@ body.is-loading .page-transition {
     ),
     linear-gradient(
       to top,
-      rgba(0, 0, 0, var(--strong-scrim-opacity)) 0%,
-      rgba(0, 0, 0, calc(var(--strong-scrim-opacity) * 0.7)) 30%,
-      rgba(0, 0, 0, calc(var(--strong-scrim-opacity) * 0.25)) 48%,
-      transparent var(--strong-scrim-height)
+      rgba(0, 0, 0, var(--scrim-o)) 0%,
+      rgba(0, 0, 0, calc(var(--scrim-o) * 0.7)) calc(var(--scrim-h) * 0.48),
+      rgba(0, 0, 0, calc(var(--scrim-o) * 0.25)) calc(var(--scrim-h) * 0.77),
+      transparent var(--scrim-h)
     );
 }
 
