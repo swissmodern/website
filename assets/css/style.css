@@ -58,14 +58,14 @@
      (the chairs stay in view); every other chapter crops from the centre */
   --opener-image-anchor: left center;
 
-  /* Strong scrim (Igor, 23.09.): taller, darker bottom falloff than the chapter scrim,
-     where the photo is bright under the text. Same gradient shape, tuned per page:
-     about (tall text block on a mid-bright shelf) and opener (text on sunlit concrete,
-     fainter and ending lower — Igor, 23.09.). */
+  /* Heavier bottom scrims (Igor, 23.09.) where the photo is bright under the text — one
+     gradient shape, two strengths. Strong: about page (tall text block on a mid-bright
+     shelf). Medium: opener and chapter 5 (class .hero-section--medium-scrim). Chapters
+     2-4 keep the default chapter scrim. */
   --strong-scrim-opacity: 0.8;
   --strong-scrim-height:  62%;
-  --opener-scrim-opacity: 0.6;
-  --opener-scrim-height:  48%;
+  --medium-scrim-opacity: 0.6;
+  --medium-scrim-height:  48%;
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -489,19 +489,21 @@ body.is-loading .page-transition {
   opacity: 1;
 }
 
-/* Strong scrim — one gradient shape, per-page strength via the two local properties */
+/* Heavier scrims — one gradient shape, strength via the two local properties */
 .hero-section--about .hero-scrim {
   --scrim-o: var(--strong-scrim-opacity);
   --scrim-h: var(--strong-scrim-height);
 }
 
-.hero-section--opener .hero-scrim {
-  --scrim-o: var(--opener-scrim-opacity);
-  --scrim-h: var(--opener-scrim-height);
+.hero-section--opener .hero-scrim,
+.hero-section--medium-scrim .hero-scrim {
+  --scrim-o: var(--medium-scrim-opacity);
+  --scrim-h: var(--medium-scrim-height);
 }
 
 .hero-section--about .hero-scrim,
-.hero-section--opener .hero-scrim {
+.hero-section--opener .hero-scrim,
+.hero-section--medium-scrim .hero-scrim {
   background:
     linear-gradient(
       to bottom,
