@@ -54,9 +54,11 @@
 
   /* Opener title = the wordmark (session 10, Igor): larger than chapter titles */
   --opener-title-scale: 1.6;
-  /* Opener photo anchor (Igor, 23.09.): when the frame crops, the left edge stays put
-     (the chairs stay in view); every other chapter crops from the centre */
-  --opener-image-anchor: left center;
+  /* Opener photo anchor (Igor, 23.09.): the crop keeps this point of the photo in view.
+     The chairs sit at ~14-37% of the width; a phone shows ~27% of it, so 18% frames both
+     (a hard "left" showed wall only). Desktop shows nearly the whole photo either way.
+     Every other chapter crops from the centre. */
+  --opener-image-anchor: 18% center;
 
   /* Heavier bottom scrims (Igor, 23.09.) where the photo is bright under the text — one
      gradient shape, two strengths. Strong: about page (tall text block on a mid-bright
