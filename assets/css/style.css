@@ -54,11 +54,15 @@
 
   /* Opener title = the wordmark (session 10, Igor): larger than chapter titles */
   --opener-title-scale: 1.6;
+  /* Opener photo anchor (Igor, 23.09.): when the frame crops, the left edge stays put
+     (the chairs stay in view); every other chapter crops from the centre */
+  --opener-image-anchor: left center;
 
-  /* About page scrim (Igor, 23.09.): the text block is taller than a chapter's and the
-     photo is mid-bright at the bottom — a taller, darker falloff than the chapter scrim */
-  --about-scrim-opacity: 0.8;
-  --about-scrim-height:  62%;
+  /* Strong scrim (Igor, 23.09.): taller, darker bottom falloff than the chapter scrim.
+     Used where the photo is bright under the text — the about page (tall text block on a
+     mid-bright shelf) and the opener (text on sunlit concrete). */
+  --strong-scrim-opacity: 0.8;
+  --strong-scrim-height:  62%;
 
   /* Hamburger panel */
   --panel-width:      280px;
@@ -445,6 +449,10 @@ body.is-loading .page-transition {
   text-transform: lowercase;
 }
 
+.hero-section--opener .hero-bg img {
+  object-position: var(--opener-image-anchor);
+}
+
 .section-body {
   font-size: var(--font-size-body);
   font-weight: var(--font-weight-light);
@@ -478,7 +486,9 @@ body.is-loading .page-transition {
   opacity: 1;
 }
 
-.hero-section--about .hero-scrim {
+/* Strong scrim — about page and opener (see the --strong-scrim-* tokens) */
+.hero-section--about .hero-scrim,
+.hero-section--opener .hero-scrim {
   background:
     linear-gradient(
       to bottom,
@@ -488,10 +498,10 @@ body.is-loading .page-transition {
     ),
     linear-gradient(
       to top,
-      rgba(0, 0, 0, var(--about-scrim-opacity)) 0%,
-      rgba(0, 0, 0, calc(var(--about-scrim-opacity) * 0.7)) 30%,
-      rgba(0, 0, 0, calc(var(--about-scrim-opacity) * 0.25)) 48%,
-      transparent var(--about-scrim-height)
+      rgba(0, 0, 0, var(--strong-scrim-opacity)) 0%,
+      rgba(0, 0, 0, calc(var(--strong-scrim-opacity) * 0.7)) 30%,
+      rgba(0, 0, 0, calc(var(--strong-scrim-opacity) * 0.25)) 48%,
+      transparent var(--strong-scrim-height)
     );
 }
 
