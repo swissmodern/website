@@ -55,6 +55,11 @@
   /* Opener title = the wordmark (session 10, Igor): larger than chapter titles */
   --opener-title-scale: 1.6;
 
+  /* About page scrim (Igor, 23.09.): the text block is taller than a chapter's and the
+     photo is mid-bright at the bottom — a taller, darker falloff than the chapter scrim */
+  --about-scrim-opacity: 0.8;
+  --about-scrim-height:  62%;
+
   /* Hamburger panel */
   --panel-width:      280px;
   --panel-padding-x:  1.5rem;
@@ -471,6 +476,23 @@ body.is-loading .page-transition {
    hero content. The old .subpage-hero / .subpage-content layout was removed. */
 .hero-section--about .hero-content {
   opacity: 1;
+}
+
+.hero-section--about .hero-scrim {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.18) 15%,
+      transparent 30%
+    ),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, var(--about-scrim-opacity)) 0%,
+      rgba(0, 0, 0, calc(var(--about-scrim-opacity) * 0.7)) 30%,
+      rgba(0, 0, 0, calc(var(--about-scrim-opacity) * 0.25)) 48%,
+      transparent var(--about-scrim-height)
+    );
 }
 
 /* Full-image hero section — height determined by the image, not the viewport.
