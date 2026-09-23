@@ -475,7 +475,9 @@ body.is-loading .page-transition {
 
 /* Full-image hero section — height determined by the image, not the viewport.
    --portrait: the portrait chair (chapter 2). --full-image: same rule for a landscape
-   photo that must never be trimmed (chapter 5 "Ihre Sammlung", Martin, 22.09.). */
+   photo. Tried on chapter 5 on 22.09. and withdrawn on 23.09. after Martin's feedback:
+   on a phone the landscape frame became a small strip and broke the rhythm of the
+   full-screen chapters. Kept as a documented option, currently unused. */
 .hero-section--portrait,
 .hero-section--full-image {
   height: auto;
