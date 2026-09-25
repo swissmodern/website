@@ -476,7 +476,8 @@ body.is-loading .page-transition {
   letter-spacing: var(--letter-spacing-utility);
   color: var(--color-accent);
   opacity: var(--utility-opacity);
-  text-transform: lowercase;
+  /* No lowercase transform: the wordmark is already lowercase in the source text,
+     the founder's name keeps its capitals (Igor, 25.09.2026). */
 }
 
 
